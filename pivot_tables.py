@@ -6,8 +6,16 @@ import pandas as pd
 
 
 # read excel file
-df1 = pandas.read_excel("file_name.xlsx", sheetname=0)  # 0 - start from first page
-df2 = pandas.read_excel("file_name.xlsx", sheetname=0)
+df1 = pd.read_excel("file_name.xlsx", sheetname=0)  # 0 - start from first page
+df2 = pd.read_excel("file_name.xlsx", sheetname=0)
+
+# from df1 and df2 take some columns
+date = df1['column_name']
+variable = df1['column_name']
+value = df2['column_name']
+result = df.pivot(index='date', columns='variable', values='value')
+result.to_excel("result.xlsx")
+
 
 #  return reshaped DataFrame organized by given index / column values
 df = pd.DataFrame({'foo': ['one', 'one', 'one', 'two', 'two',
