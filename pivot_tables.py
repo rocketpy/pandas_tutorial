@@ -1,6 +1,18 @@
 #  pivot - https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.pivot.html
 #  pivot_table - https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.pivot_table.html 
 #  DataFrame to ...  - https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_excel.html
+"""
+For anyone who is still interested in the difference between pivot and pivot_table, there are mainly two differences:
+- pivot_table is a generalization of pivot that can handle duplicate values for one pivoted index/column pair.
+  Specifically, you can give pivot_table a list of aggregation
+  functions using keyword argument aggfunc. The default aggfunc of pivot_table is numpy.mean.
+- pivot_table also supports using multiple columns for the index and column of the pivoted table. A hierarchical index will be automatically generated for you.
+
+- pivot_table will only allow numerical types as "values=", whereas pivot will take string types as "values=".
+- pivot() doesn't accept a list for index.
+  pivot_table() accepts.
+  Internally, both of them are using reset_index()/stack()/unstack() to do the job.
+"""
 
 import pandas as pd
 
@@ -8,6 +20,10 @@ import pandas as pd
 # read excel file
 df1 = pd.read_excel("file_name.xlsx", sheetname=0)  # 0 - start from first page
 df2 = pd.read_excel("file_name.xlsx", sheetname=0)
+
+# very important !!! before print data use this :
+print(df1.head(10))  # first 10 rows
+print(df2.head(10))  # first 10 rows
 
 # from df1 and df2 take some columns
 date = df1['column_name']
