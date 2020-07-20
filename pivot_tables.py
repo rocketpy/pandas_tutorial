@@ -9,9 +9,21 @@ import pandas as pd
 df1 = pandas.read_excel("file_name.xlsx", sheetname=0)  # 0 - start from first page
 df2 = pandas.read_excel("file_name.xlsx", sheetname=0)
 
+#  return reshaped DataFrame organized by given index / column values
+df = pd.DataFrame({'foo': ['one', 'one', 'one', 'two', 'two',
+                           'two'],
+                   'bar': ['A', 'B', 'C', 'A', 'B', 'C'],
+                   'baz': [1, 2, 3, 4, 5, 6],
+                   'zoo': ['x', 'y', 'z', 'q', 'w', 't']})
+
+pivot_table = df.pivot(index='foo', columns='bar', values='baz')
+# or
+pivot_table = df.pivot(index='foo', columns='bar', values=['baz', 'zoo'])
+
+pivot_table.to_excel("result.xlsx")
+
+
 # create a spreadsheet-style pivot table as a DataFrame
-
-
 df = pd.DataFrame({"A": ["foo", "foo", "foo", "foo", "foo",
                          "bar", "bar", "bar", "bar"],
                    "B": ["one", "one", "one", "two", "two",
@@ -25,10 +37,18 @@ df = pd.DataFrame({"A": ["foo", "foo", "foo", "foo", "foo",
 pivot_table = pd.pivot_table(df, values='D', index=['A', 'B'],
                     columns=['C'], aggfunc=np.sum)
 
+pivot_table.to_excel("result.xlsx")
+
+
+#  concatenate pandas objects along a particular axis with optional set logic along the other axes
+pd.concat([df1, df2])
+# or
+bigdata = pd.concat([data1, data2], ignore_index=True, sort=False)
+
 
 # just a simple example
-df1 = pd.DataFrame([['a', 'b'], ['c', 'd']],
+df = pd.DataFrame([['a', 'b'], ['c', 'd']],
                    index=['row 1', 'row 2'],
                    columns=['col 1', 'col 2'])
 
-df1.to_excel("result.xlsx")  # ("result.xlsx", sheet_name='Sheet_name_1')    
+df.to_excel("result.xlsx")  # ("result.xlsx", sheet_name='Sheet_name_1')    
