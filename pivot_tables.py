@@ -11,3 +11,24 @@ df2 = pandas.read_excel("file_name.xlsx", sheetname=0)
 
 # create a spreadsheet-style pivot table as a DataFrame
 
+
+df = pd.DataFrame({"A": ["foo", "foo", "foo", "foo", "foo",
+                         "bar", "bar", "bar", "bar"],
+                   "B": ["one", "one", "one", "two", "two",
+                         "one", "one", "two", "two"],
+                   "C": ["small", "large", "large", "small",
+                         "small", "large", "small", "small",
+                         "large"],
+                   "D": [1, 2, 2, 3, 3, 4, 5, 6, 7],
+                   "E": [2, 4, 5, 5, 6, 6, 8, 9, 9]})
+
+pivot_table = pd.pivot_table(df, values='D', index=['A', 'B'],
+                    columns=['C'], aggfunc=np.sum)
+
+
+# just a simple example
+df1 = pd.DataFrame([['a', 'b'], ['c', 'd']],
+                   index=['row 1', 'row 2'],
+                   columns=['col 1', 'col 2'])
+
+df1.to_excel("result.xlsx")  # ("result.xlsx", sheet_name='Sheet_name_1')    
