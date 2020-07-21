@@ -33,6 +33,13 @@ result = df.pivot(index='date', columns='variable', values='value')
 result.to_excel("result.xlsx")
 
 
+#  aggfunc='mean' is the default 
+df.pivot_table(values='column_name', index='row', columns='col', fill_value=0, aggfunc='mean')
+
+#  pd.DataFrame.groupby
+df.groupby(['row', 'col'])['col_name'].mean().unstack(fill_value=0)
+
+
 #  return reshaped DataFrame organized by given index / column values
 df = pd.DataFrame({'foo': ['one', 'one', 'one', 'two', 'two',
                            'two'],
