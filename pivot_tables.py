@@ -34,10 +34,19 @@ result.to_excel("result.xlsx")
 
 
 #  aggfunc='mean' is the default 
-df.pivot_table(values='column_name', index='row', columns='col', fill_value=0, aggfunc='mean')
+df.pivot_table(values='column_name', index='row', columns='col', fill_value=0, aggfunc='mean')  # aggfunc='sum'
 
 #  pd.DataFrame.groupby
 df.groupby(['row', 'col'])['col_name'].mean().unstack(fill_value=0)
+
+# pd.crosstab
+pd.crosstab(index=df['row'], columns=df['col'], values=df['col_name'], aggfunc='mean').fillna(0)
+
+# get something other than mean, like sum
+df.pivot_table(values='col_name', index='row', columns='col', fill_value=0, aggfunc='sum')  #  aggfunc='mean'
+
+# pd.DataFrame.groupby
+df.groupby(['row', 'col'])['col_name'].sum().unstack(fill_value=0)
 
 
 #  return reshaped DataFrame organized by given index / column values
