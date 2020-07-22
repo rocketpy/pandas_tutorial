@@ -61,6 +61,11 @@ df.pivot_table(values=['col_name_1', 'col_name_2'], index='row', columns='col', 
 #  or by groupby
 df.groupby(['row', 'col'])['col_name_1', 'col_name_2'].mean().unstack(fill_value=0)
 
+#  subdivide by multiple columns
+df.pivot_table(values='col_name', index='row', columns=['item', 'col_name_2'], fill_value=0, aggfunc='mean')
+# or
+df.groupby(['row', 'item', 'col'])['col_name'].mean().unstack(['item', 'col']).fillna(0).sort_index(1)
+
 #  convert rows as column headers
 pivot_table = df.pivot_table('numb of ...', ['Year', 'Country'], 'type')  
 
