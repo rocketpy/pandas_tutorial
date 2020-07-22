@@ -39,6 +39,9 @@ df.pivot_table(values='column_name', index='row', columns='col', fill_value=0, a
 #  pd.DataFrame.groupby
 df.groupby(['row', 'col'])['col_name'].mean().unstack(fill_value=0)
 
+#  good general approach for doing just about any type of pivot
+#  pd.DataFrame.groupby + pd.DataFrame.unstack
+
 # pd.crosstab
 pd.crosstab(index=df['row'], columns=df['col'], values=df['col_name'], aggfunc='mean').fillna(0)
 
@@ -47,6 +50,11 @@ df.pivot_table(values='col_name', index='row', columns='col', fill_value=0, aggf
 
 # pd.DataFrame.groupby
 df.groupby(['row', 'col'])['col_name'].sum().unstack(fill_value=0)
+
+#  aggregation at a time
+df.pivot_table(values='col_name', index='row', columns='col', fill_value=0, aggfunc=[np.size, np.mean])
+#  or
+df.groupby(['row', 'col'])['col_name'].agg(['size', 'mean']).unstack(fill_value=0)
 
 #  convert rows as column headers
 pivot_table = df.pivot_table('numb of ...', ['Year', 'Country'], 'type')  
