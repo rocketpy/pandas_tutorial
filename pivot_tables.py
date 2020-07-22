@@ -48,6 +48,12 @@ df.pivot_table(values='col_name', index='row', columns='col', fill_value=0, aggf
 # pd.DataFrame.groupby
 df.groupby(['row', 'col'])['col_name'].sum().unstack(fill_value=0)
 
+#  convert rows as column headers
+pivot_table = df.pivot_table('no of ...', ['Year', 'Country'], 'type')  
+
+#  to reorder the columns
+typy_of_color.reindex_axis(['Gold', 'Silver', 'Bronze'], axis=1)
+
 
 #  return reshaped DataFrame organized by given index / column values
 df = pd.DataFrame({'foo': ['one', 'one', 'one', 'two', 'two',
