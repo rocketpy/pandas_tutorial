@@ -49,10 +49,13 @@ df.pivot_table(values='col_name', index='row', columns='col', fill_value=0, aggf
 df.groupby(['row', 'col'])['col_name'].sum().unstack(fill_value=0)
 
 #  convert rows as column headers
-pivot_table = df.pivot_table('no of ...', ['Year', 'Country'], 'type')  
+pivot_table = df.pivot_table('numb of ...', ['Year', 'Country'], 'type')  
 
 #  to reorder the columns
 typy_of_color.reindex_axis(['Gold', 'Silver', 'Bronze'], axis=1)
+
+#  Stack/ Unstack will bring the lowest level of column index to the lowest level of row index
+df.set_index(['year', 'country', 'type_of_color'], drop=True).unstack('type_of_color')
 
 
 #  return reshaped DataFrame organized by given index / column values
