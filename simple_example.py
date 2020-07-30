@@ -29,3 +29,14 @@ clean_df = comb_df[['favorite', 'favorites', 'feature_flag']]
 
 # checking df
 # print(clean_df)
+
+# explore data
+
+# count favorite and favorites
+favorite = clean_df.favorite.value_counts().sort_index()
+favorites = clean_df.favorites.value_counts().sort_index()
+
+# print(favorite)
+# print(favorites)
+
+
