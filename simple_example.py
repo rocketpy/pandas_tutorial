@@ -23,3 +23,9 @@ vars = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 comb_df['favorite'] = pd.Categorical(comb_df['favorite'], categories = varieties)
 comb_df['favorites'] = pd.Categorical(comb_df['favorites'], categories = varieties)
 
+
+# extract needed columns 
+clean_df = comb_df[['favorite', 'favorites', 'feature_flag']]
+
+# checking df
+# print(clean_df)
