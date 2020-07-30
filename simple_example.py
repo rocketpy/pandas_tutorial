@@ -39,4 +39,8 @@ favorites = clean_df.favorites.value_counts().sort_index()
 # print(favorite)
 # print(favorites)
 
-
+# split counts for fav and non-fav
+y_favorite = clean_df[clean_df.feature_flag].favorite.value_counts().sort_index()
+y_favorites = clean_df[clean_df.feature_flag].favorites.value_counts().sort_index()
+non_favorite = clean_df[np.logical_not(clean_df.featureflag)].favorite.value_counts().sort_index()
+non_favorites = clean_df[np.logical_not(clean_df.featureflag)].favorites.value_counts().sort_index()
