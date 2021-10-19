@@ -15,3 +15,14 @@ print(time_data.head())
 
 # temp_data.shape
 # time_data.shape
+
+# result = temp[temp["Number"] == "12345"]
+# result.head()
+
+# inner_merged = pd.merge(result, temp_data)
+# inner_merged.head()
+
+inner_merged_data = pd.merge(temp_data, result, on=["PLACE", "DATE"])
+# inner_merged_data.head()
+# inner_merged_data.shape
+
