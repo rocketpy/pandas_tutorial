@@ -26,3 +26,19 @@ inner_merged_data = pd.merge(temp_data, result, on=["PLACE", "DATE"])
 # inner_merged_data.head()
 # inner_merged_data.shape
 
+
+# Outer Join
+outer_merged = pd.merge(temp_data, result, how="outer", on=["PLACE", "DATE"])
+# outer_merged.head()
+# outer_merged.shape
+
+# Left Join
+left_merged = pd.merge(temp_data, result, how="left", on=["PLACE", "DATE"])
+# left_merged.head()
+# left_merged.shape
+
+
+
+
+
+
